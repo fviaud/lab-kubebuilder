@@ -1,0 +1,19 @@
+curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
+k3d cluster create --config k3d.yaml
+
+cd /home/dev/lab/frontend
+docker build -t localhost:5000/myapp:v1 .
+docker push localhost:5000/myapp:v1
+
+cd /home/dev/lab
+kubectl rollout restart deployment/myapp
+kubectl rollout status deployment/myapp
+
+sudo apt update
+sudo apt install openssh-server
+sudo service ssh start
+
+ssh-keygen -t rsa -b 4096 -C frederic.viaud@capgemini.com
+
+chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa ~/.ssh/authorized_keys && ssh localhost
