@@ -82,9 +82,10 @@ func (r *WebsiteReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 			ObjectMeta: metav1.ObjectMeta{Labels: labels},
 			Spec: corev1.PodSpec{
 				Containers: []corev1.Container{{
-					Name:  "website",
-					Image: website.Spec.Image,
-					Ports: []corev1.ContainerPort{{ContainerPort: 80}},
+					Name:            "website",
+					Image:           website.Spec.Image,
+					ImagePullPolicy: corev1.PullAlways,
+					Ports:           []corev1.ContainerPort{{ContainerPort: 80}},
 				}},
 			},
 		}

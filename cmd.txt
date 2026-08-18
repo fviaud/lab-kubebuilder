@@ -17,3 +17,7 @@ sudo service ssh start
 ssh-keygen -t rsa -b 4096 -C frederic.viaud@capgemini.com
 
 chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa ~/.ssh/authorized_keys && ssh localhost
+
+make docker-build IMG=website-operator:dev
+k3d image import website-operator:dev -c lab
+make deploy IMG=website-operator:dev

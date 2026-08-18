@@ -1,0 +1,11 @@
+apiVersion: webapp.lab.com/v1alpha1
+kind: Website
+metadata:
+  labels:
+    app.kubernetes.io/name: kubebuilder
+    app.kubernetes.io/managed-by: kustomize
+  name: website2-sample
+spec:
+  image: registry.local:5000/myapp:v1
+  replicas: 2
+  host: website2.local
