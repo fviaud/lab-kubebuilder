@@ -2,4 +2,5 @@
 resources:
 - webapp_v1alpha1_website.yaml
 # - webapp2_v1alpha1_website.yaml
+- webapp_v1alpha1_postgres.yaml
 # +kubebuilder:scaffold:manifestskustomizesamples

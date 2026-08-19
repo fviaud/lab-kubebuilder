@@ -22,6 +22,9 @@ resources:
 # default, aiding admins in cluster management. Those roles are
 # not used by the kubebuilder itself. You can comment the following lines
 # if you do not want those helpers be installed with your Project.
+- postgres_admin_role.yaml
+- postgres_editor_role.yaml
+- postgres_viewer_role.yaml
 - website_admin_role.yaml
 - website_editor_role.yaml
 - website_viewer_role.yaml

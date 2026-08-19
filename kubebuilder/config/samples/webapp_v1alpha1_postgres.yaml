@@ -1,0 +1,13 @@
+apiVersion: webapp.lab.com/v1alpha1
+kind: Postgres
+metadata:
+  labels:
+    app.kubernetes.io/name: kubebuilder
+    app.kubernetes.io/managed-by: kustomize
+  name: postgres-sample
+spec:
+  version: "16"
+  database: app
+  username: app
+  storageSize: 1Gi
+  # storageClassName: local-path

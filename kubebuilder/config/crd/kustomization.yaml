@@ -3,6 +3,7 @@
 # It should be run by config/default
 resources:
 - bases/webapp.lab.com_websites.yaml
+- bases/webapp.lab.com_postgres.yaml
 # +kubebuilder:scaffold:crdkustomizeresource
 
 patches:

@@ -18,4 +18,13 @@ resources:
   kind: Website
   path: lab.com/website-operator/api/v1alpha1
   version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: lab.com
+  group: webapp
+  kind: Postgres
+  path: lab.com/website-operator/api/v1alpha1
+  version: v1alpha1
 version: "3"
