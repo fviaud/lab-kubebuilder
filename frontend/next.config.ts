@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
 }
 
 export default nextConfig
+module.exports = {allowedDevOrigins: ['website.local'],} 
 
 
 // /** @type {import('next').NextConfig} */

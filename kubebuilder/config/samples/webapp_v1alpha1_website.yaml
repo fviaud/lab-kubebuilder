@@ -6,6 +6,6 @@ metadata:
     app.kubernetes.io/managed-by: kustomize
   name: website-sample
 spec:
-  image: registry.local:5000/myapp:v1
+  image: myapp
   replicas: 2
   host: website.local
