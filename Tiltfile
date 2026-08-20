@@ -9,6 +9,15 @@ docker_build(
     ],
 )
 
+docker_build(
+    'backend',
+    context='./backend',
+    dockerfile='./backend/dockerfile-tilt',
+    live_update=[
+        sync('./backend', '/opt/app'),
+    ],
+)
+
 # Website is a custom resource, so declare where its container image lives.
 k8s_kind('Website', image_json_path='{.spec.image}')
 
