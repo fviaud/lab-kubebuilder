@@ -21,3 +21,16 @@ chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa ~/.ssh/authorized_keys && ssh localh
 make docker-build IMG=website-operator:dev
 k3d image import website-operator:dev -c lab
 make deploy IMG=website-operator:dev
+
+helm repo add cnpg https://cloudnative-pg.github.io/charts
+helm repo update
+
+sudo cp /tmp/capgemini-zscaler-ca.crt /usr/local/share/ca-certificates/capgemini-zscaler-ca.crt
+sudo update-ca-certificates
+
+helm repo add cnpg https://cloudnative-pg.github.io/charts
+helm repo update
+
+helm install cnpg cnpg/cloudnative-pg \
+  --namespace cnpg-system \
+  --create-namespace
