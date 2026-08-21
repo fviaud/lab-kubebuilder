@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+
+# build artifacts
+server
+/tmp
+
+# air (dockerfile-tilt live reload)
+tmp/

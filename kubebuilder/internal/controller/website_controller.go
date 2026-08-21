@@ -86,6 +86,7 @@ func (r *WebsiteReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 					Image:           website.Spec.Image,
 					ImagePullPolicy: corev1.PullAlways,
 					Ports:           []corev1.ContainerPort{{ContainerPort: 80}},
+					Env:             website.Spec.Env,
 				}},
 			},
 		}

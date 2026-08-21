@@ -12,9 +12,10 @@ import (
 
 func main() {
 
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalf("Error loading .env file: %v", err)
+	// .env est optionnel : en production les variables sont injectées par
+	// l'environnement d'exécution (docker --env-file, Kubernetes Secret/ConfigMap...).
+	if err := godotenv.Load(); err != nil {
+		log.Printf("No .env file found, relying on environment variables: %v", err)
 	}
 
 	client := database.GetClient()

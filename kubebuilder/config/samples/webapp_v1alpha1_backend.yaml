@@ -9,3 +9,12 @@ spec:
   image: backend
   replicas: 1
   host: backend.local
+  env:
+    # CNPG génère automatiquement le Secret "<cluster>-app" (ici "bdd-app")
+    # contenant les identifiants de connexion, dont la clé "uri" au format
+    # postgres://user:pass@host:5432/dbname attendue par DATABASE_URL.
+    - name: DATABASE_URL
+      valueFrom:
+        secretKeyRef:
+          name: bdd-app
+          key: uri
