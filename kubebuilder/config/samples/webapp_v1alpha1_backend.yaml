@@ -4,8 +4,8 @@ metadata:
   labels:
     app.kubernetes.io/name: kubebuilder
     app.kubernetes.io/managed-by: kustomize
-  name: website-sample
+  name: backend-sample
 spec:
-  image: myapp
+  image: backend
   replicas: 1
-  host: website.local
+  host: backend.local
