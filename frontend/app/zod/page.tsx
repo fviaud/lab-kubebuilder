@@ -13,6 +13,14 @@ const schema = z.object({
 
 // 2️⃣ Conversion vers JSON Schema compatible avec JSONSchema7
 
+function MySubmitButton() {
+  return (
+    <button type="submit" className="my-btn">
+      🚀 Soumettre
+    </button>
+  )
+}
+
 export default function Page() {
   const jsonSchema = z.toJSONSchema(schema) as RJSFSchema
   jsonSchema.$schema = "http://json-schema.org/draft-07/schema#"
@@ -24,14 +32,6 @@ export default function Page() {
     } else {
       console.log("✅ data valide:", formData)
     }
-  }
-
-  function MySubmitButton() {
-    return (
-      <button type="submit" className="my-btn">
-        🚀 Soumettre
-      </button>
-    )
   }
 
   return (

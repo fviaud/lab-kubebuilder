@@ -6,17 +6,16 @@ import { updateTodo } from "@/lib/actionsTodo"
 import { TodoSchema, TodoUpdateSchema } from "@/models/todo.model"
 import { IChangeEvent, withTheme } from "@rjsf/core"
 import { Theme as shadcnTheme } from "@rjsf/shadcn"
-import { RJSFSchema } from "@rjsf/utils"
+import { RJSFSchema, WidgetProps } from "@rjsf/utils"
 import validator from "@rjsf/validator-ajv8"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import * as z from "zod"
-const pathRoot = "/todos"
 
 const Form = withTheme(shadcnTheme)
 
 const widgets = {
-  CheckboxWidget: ({ value, onChange, label }: any) => (
+  CheckboxWidget: ({ value, onChange, label }: WidgetProps) => (
     <label className="flex items-center gap-2">
       <span>{label}</span>
       <Switch checked={!!value} onCheckedChange={onChange} />

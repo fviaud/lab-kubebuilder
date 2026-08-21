@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache"
 
 const pathRoot = "/todos"
 
-const apiUrl = process.env.API_URL || "http://backend-sample"
+const apiUrl = process.env.API_URL || "http://backend"
 const apiVersion = process.env.API_VERSION || "v1"
 const apiItems = "todos"
 const todosPath = `${apiUrl}/api/${apiVersion}/${apiItems}`
@@ -63,8 +63,7 @@ export async function updateTodo(data: Record<string, unknown>) {
     }
   }
 
-  const { id, ...dataWithoutId } = data
-  const parsed = TodoUpdateSchema.safeParse(dataWithoutId)
+  const parsed = TodoUpdateSchema.safeParse(data)
 
   if (!parsed.success) {
     return {

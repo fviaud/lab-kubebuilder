@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { Todo, TodoUpdateSchema } from "@/models/todo.model"
-import { deleteTodo, getTodo, updateTodo } from "@/lib/actionsTodo"
+import { deleteTodo, getTodo } from "@/lib/actionsTodo"
 import { mutateApi } from "@/lib/api"
 
 const apiUrl = process.env.API_URL || "http://localhost:8080"
