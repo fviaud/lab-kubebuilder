@@ -8,6 +8,7 @@ const pathRoot = "/todos"
 const apiUrl = process.env.API_URL || "http://backend"
 const apiVersion = process.env.API_VERSION || "v2"
 const apiItems = "todos"
+
 const todosPath = `${apiUrl}/api/${apiVersion}/${apiItems}`
 
 const getTodoPath = (id?: string) => (id ? `${todosPath}/${id}` : todosPath)

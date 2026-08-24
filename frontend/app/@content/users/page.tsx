@@ -15,7 +15,7 @@ export default async function Page() {
   return (
     <ul>
       {items.map((item: User) => (
-        <li key={item.id}>{item.name}</li>
+        <li key={item.id}>{item.name} {item.email}</li>
       ))}
     </ul>
   )
