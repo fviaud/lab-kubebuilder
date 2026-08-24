@@ -24,3 +24,10 @@ export const TodoUpdateSchema = TodoSchema.partial().pick({
 })
 
 export type Todo = z.infer<typeof TodoSchema>
+
+export type TodoResponse = {
+  items: Todo[]
+  total: number
+  page: number
+  pageSize: number
+}

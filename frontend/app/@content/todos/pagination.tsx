@@ -24,7 +24,10 @@ export default function PaginationSimple({
       <PaginationContent>
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
           <PaginationItem key={p}>
-            <PaginationLink href={`?page=${p}`} isActive={p === currentPage}>
+            <PaginationLink
+              href={`?page=${p}&pageSize=${pageSize}`}
+              isActive={p === currentPage}
+            >
               {p}
             </PaginationLink>
           </PaginationItem>

@@ -1,14 +1,7 @@
 import { getTodos } from "@/lib/actionsTodo"
-import { Todo } from "@/models/todo.model"
+import { TodoResponse } from "@/models/todo.model"
 import DataTable from "./dataTable"
 import Pagination from "./pagination"
-
-type TodoResponse = {
-  items: Todo[]
-  total: number
-  page: number
-  pageSize: number
-}
 
 export default async function Page({
   searchParams,

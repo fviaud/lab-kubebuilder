@@ -1,12 +1,24 @@
 import { fetchApi } from "@/lib/api"
-import { User } from "@/models/users.model"
+import { UserSchema } from "@/models/users.model"
+import { z } from "zod"
+
 export const dynamic = "force-dynamic"
 
+const apiUrl = process.env.API_URL_JSONPLACEHOLDER || "http://JSONPlaceholder"
+const apiItems = process.env.API_ITEMS_JSONPLACEHOLDER_USERS || "items"
+
 export default async function Page() {
-  
-  const apiUrl = process.env.API_URL_JSONPLACEHOLDER || "http://JSONPlaceholder"
-  const apiItems = process.env.API_ITEMS_JSONPLACEHOLDER_USERS || "items"
-  const items = await fetchApi<User[]>(`${apiUrl}/${apiItems}`)
+  let items
+  try {
+    const raw = await fetchApi<unknown>(`${apiUrl}/${apiItems}`)
+    items = z.array(UserSchema).parse(raw)
+  } catch (error) {
+    throw new Error(
+      `Unable to load users: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    )
+  }
 
   if (items.length === 0) {
     return <p>No items found.</p>
@@ -14,8 +26,10 @@ export default async function Page() {
 
   return (
     <ul>
-      {items.map((item: User) => (
-        <li key={item.id}>{item.name} {item.email}</li>
+      {items.map((item) => (
+        <li key={item.id}>
+          {item.name} {item.email}
+        </li>
       ))}
     </ul>
   )

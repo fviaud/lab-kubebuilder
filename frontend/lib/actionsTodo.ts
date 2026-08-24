@@ -1,6 +1,11 @@
 "use server"
 import { fetchApi, mutateApi } from "@/lib/api"
-import { Todo, TodoCreateSchema, TodoUpdateSchema } from "@/models/todo.model"
+import {
+  Todo,
+  TodoCreateSchema,
+  TodoResponse,
+  TodoUpdateSchema,
+} from "@/models/todo.model"
 import { revalidatePath } from "next/cache"
 
 const pathRoot = "/todos"
@@ -12,13 +17,6 @@ const apiItems = "todos"
 const todosPath = `${apiUrl}/api/${apiVersion}/${apiItems}`
 
 const getTodoPath = (id?: string) => (id ? `${todosPath}/${id}` : todosPath)
-
-type TodoResponse = {
-  items: Todo[]
-  total: number
-  page: number
-  pageSize: number
-}
 
 export async function getTodos({ query }: { query?: string } = {}) {
   return fetchApi<TodoResponse>(`${getTodoPath()}${query}`)
