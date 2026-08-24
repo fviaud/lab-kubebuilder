@@ -8,7 +8,7 @@ metadata:
 spec:
   image: backend
   replicas: 1
-  host: backend.local
+  host: backend-dev.local
   env:
     # CNPG génère automatiquement le Secret "<cluster>-app" (ici "bdd-app")
     # contenant les identifiants de connexion, dont la clé "uri" au format
@@ -16,5 +16,5 @@ spec:
     - name: DATABASE_URL
       valueFrom:
         secretKeyRef:
-          name: bdd-app
+          name: bdd-dev-app
           key: uri

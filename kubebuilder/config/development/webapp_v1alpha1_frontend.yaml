@@ -1,0 +1,27 @@
+apiVersion: webapp.lab.com/v1alpha1
+kind: Website
+metadata:
+  labels:
+    app.kubernetes.io/name: kubebuilder
+    app.kubernetes.io/managed-by: kustomize
+  name: frontend
+spec:
+  image: myapp
+  replicas: 1
+  host: frontend-dev.local
+  env:
+    # CNPG génère automatiquement le Secret "<cluster>-app" (ici "bdd-app")
+    # contenant les identifiants de connexion, dont la clé "uri" au format
+    # postgres://user:pass@host:5432/dbname attendue par DATABASE_URL.
+    - name: API_URL
+      value: http://backend-dev
+      # value : http://backend.local/api
+    - name: API_VERSION
+      value: v1
+    - name : API_URL_JSONPLACEHOLDER
+      value: "https://jsonplaceholder.typicode.com/"
+    - name : API_ITEMS_JSONPLACEHOLDER_POSTS
+      value: "posts"
+    - name : API_ITEMS_JSONPLACEHOLDER_USERS
+      value: "users"
+

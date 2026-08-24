@@ -24,6 +24,4 @@ k8s_yaml(local(['kubectl', 'kustomize', './kubebuilder/config/crd']))
 # Website is a custom resource, so declare where its container image lives.
 k8s_kind('Website', image_json_path='{.spec.image}')
 
-
-k8s_yaml(local(['kubectl', 'kustomize', './kubebuilder/config/cnpg']))
-k8s_yaml(local(['kubectl', 'kustomize', './kubebuilder/config/samples']))
+k8s_yaml(local(['kubectl', 'kustomize', './kubebuilder/config/development']))
