@@ -1,12 +1,12 @@
 import { fetchApi } from "@/lib/api"
-import { Post } from "@/models/post.model"
+import { User } from "@/models/users.model"
 export const dynamic = "force-dynamic"
 
 export default async function Page() {
   
   const apiUrl = process.env.API_URL_JSONPLACEHOLDER || "http://JSONPlaceholder"
-  const apiItems = process.env.API_ITEMS_JSONPLACEHOLDER_POSTS || "items"
-  const items = await fetchApi<Post[]>(`${apiUrl}/${apiItems}`)
+  const apiItems = process.env.API_ITEMS_JSONPLACEHOLDER_USERS || "items"
+  const items = await fetchApi<User[]>(`${apiUrl}/${apiItems}`)
 
   if (items.length === 0) {
     return <p>No items found.</p>
@@ -14,8 +14,8 @@ export default async function Page() {
 
   return (
     <ul>
-      {items.map((item: Post) => (
-        <li key={item.id}>{item.title}</li>
+      {items.map((item: User) => (
+        <li key={item.id}>{item.name}</li>
       ))}
     </ul>
   )
