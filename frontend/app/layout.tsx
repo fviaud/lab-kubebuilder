@@ -32,9 +32,9 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <div style={{ display: "flex" }}>
-            <aside style={{ width: 200 }}>{sidebar}</aside>
-            <main style={{ flex: 1 }}>
+          <div className="flex h-screen overflow-hidden">
+            <aside className="h-screen shrink-0 overflow-y-auto">{sidebar}</aside>
+            <main className="min-w-0 flex-1 overflow-y-auto">
               {/* {children} */}
               {content}
             </main>
