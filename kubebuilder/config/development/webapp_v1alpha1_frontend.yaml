@@ -8,6 +8,9 @@ metadata:
 spec:
   image: myapp
   replicas: 1
+  waitFor:
+    - service: backend-dev
+      port: 80
   host: frontend-dev.local
   env:
     # CNPG génère automatiquement le Secret "<cluster>-app" (ici "bdd-app")

@@ -18,6 +18,7 @@ package controller
 
 import (
 	"context"
+	"strconv"
 
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
@@ -81,6 +82,7 @@ func (r *WebsiteReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 		deploy.Spec.Template = corev1.PodTemplateSpec{
 			ObjectMeta: metav1.ObjectMeta{Labels: labels},
 			Spec: corev1.PodSpec{
+				InitContainers: waitContainers(website.Spec.WaitFor),
 				Containers: []corev1.Container{{
 					Name:            "website",
 					Image:           website.Spec.Image,
@@ -179,6 +181,25 @@ func (r *WebsiteReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 	}
 
 	return ctrl.Result{}, nil
+}
+
+func waitContainers(dependencies []webappv1.ServiceDependency) []corev1.Container {
+	containers := make([]corev1.Container, 0, len(dependencies))
+	for index, dependency := range dependencies {
+		containers = append(containers, corev1.Container{
+			Name:  "wait-for-" + strconv.Itoa(index),
+			Image: "busybox:1.36",
+			Command: []string{
+				"sh",
+				"-c",
+				`until nc -z -w 1 "$1" "$2"; do sleep 2; done`,
+				"wait-for-service",
+				dependency.Service,
+				strconv.Itoa(int(dependency.Port)),
+			},
+		})
+	}
+	return containers
 }
 
 // SetupWithManager sets up the controller with the Manager.

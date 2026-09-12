@@ -58,6 +58,22 @@ type WebsiteSpec struct {
 	// +listMapKey=name
 	// +optional
 	Env []corev1.EnvVar `json:"env,omitempty"`
+
+	// waitFor lists services that must accept TCP connections before the website starts.
+	// +optional
+	WaitFor []ServiceDependency `json:"waitFor,omitempty"`
+}
+
+// ServiceDependency identifies a Kubernetes Service and port to wait for.
+type ServiceDependency struct {
+	// service is the Kubernetes Service name.
+	// +required
+	Service string `json:"service"`
+	// port is the TCP port exposed by the Service.
+	// +kubebuilder:validation:Minimum=1
+	// +kubebuilder:validation:Maximum=65535
+	// +required
+	Port int32 `json:"port"`
 }
 
 // WebsiteStatus defines the observed state of Website.

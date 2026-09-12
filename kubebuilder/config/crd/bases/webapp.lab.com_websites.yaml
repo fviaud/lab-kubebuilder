@@ -216,6 +216,27 @@ spec:
                 format: int32
                 minimum: 1
                 type: integer
+              waitFor:
+                description: waitFor lists services that must accept TCP connections
+                  before the website starts.
+                items:
+                  description: ServiceDependency identifies a Kubernetes Service and
+                    port to wait for.
+                  properties:
+                    port:
+                      description: port is the TCP port exposed by the Service.
+                      format: int32
+                      maximum: 65535
+                      minimum: 1
+                      type: integer
+                    service:
+                      description: service is the Kubernetes Service name.
+                      type: string
+                  required:
+                  - port
+                  - service
+                  type: object
+                type: array
             type: object
           status:
             description: status defines the observed state of Website
